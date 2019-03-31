@@ -1,7 +1,12 @@
 import React, { Component } from 'react';
+import { BrowserRouter as Router, Route } from 'react-router-dom';
+
 import Header from './components/layout/Header';
+import About from './components/pages/About';
 import AddTodo from './components/AddTodo';
 import Todos from './components/Todos';
+
+import uuid from 'uuid';
 
 import './App.css';
 
@@ -9,17 +14,17 @@ class App extends Component {
 	state = {
 		todos: [
 			{
-				id: 1,
+				id: uuid.v4(),
 				title: 'Take out the trash',
 				completed: false
 			},
 			{
-				id: 2,
+				id: uuid.v4(),
 				title: 'Dinner with friends.',
 				completed: false
 			},
 			{
-				id: 3,
+				id: uuid.v4(),
 				title: 'Schedule a meeting with design team.',
 				completed: false
 			},
@@ -48,7 +53,7 @@ class App extends Component {
 	// using the spread operator because it makes a copied array
 	addTodo = (title) => {
 		const newTodo = {
-			id: 4,
+			id: uuid.v4(),
 			title,
 			completed: false
 		}
@@ -64,13 +69,22 @@ class App extends Component {
 			// this looks like HTML, but it's actually JSX
 			// <!-- We embed our custom components with tags -->
 			// passing our todos, from our App state, to the Todos
-      <div className="App">
-				<div className="container">
-					<Header />
-					<AddTodo addTodo={this.addTodo} />
-					<Todos todos={this.state.todos} markComplete={this.markComplete} deleteTodo={this.deleteTodo}/>
-				</div>
-      </div>
+			// if we want to use the router, we need to wrap EVERYTHING in it
+			<Router>
+	      <div className="App">
+					<div className="container">
+						<Header />
+						<Route exact path="/" render={props => (
+							<React.Fragment>
+								<AddTodo addTodo={this.addTodo} />
+								<Todos todos={this.state.todos} markComplete={this.markComplete} deleteTodo={this.deleteTodo}/>
+							</React.Fragment>
+						)} />
+
+						<Route path="/about" component={About} />
+					</div>
+	      </div>
+			</Router>
     );
   }
 }
