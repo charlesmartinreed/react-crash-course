@@ -1,5 +1,8 @@
 import React, { Component } from 'react';
-import Todos from './components/Todos'
+import Header from './components/layout/Header';
+import AddTodo from './components/AddTodo';
+import Todos from './components/Todos';
+
 import './App.css';
 
 class App extends Component {
@@ -50,7 +53,11 @@ class App extends Component {
 			// <!-- We embed our custom components with tags -->
 			// passing our todos, from our App state, to the Todos
       <div className="App">
+				<div className="container">
+					<Header />
+					<AddTodo />
 					<Todos todos={this.state.todos} markComplete={this.markComplete} deleteTodo={this.deleteTodo}/>
+				</div>
       </div>
     );
   }
