@@ -23,6 +23,7 @@ class App extends Component {
 		]
 	}
 
+	// toggles the 'complete' prop for our item
 	markComplete = (id) => {
 		this.setState( {todos: this.state.todos.map(todo => {
 			if(todo.id === id) {
@@ -31,6 +32,13 @@ class App extends Component {
 				return todo;
 			})
 		})
+	}
+
+	// DELETE todos when trash button is selected
+	deleteTodo = (id) => {
+		this.setState( {todos: this.state.todos.filter(todo => {
+			return todo.id !== id
+		})})
 	}
 
   render() {
@@ -42,7 +50,7 @@ class App extends Component {
 			// <!-- We embed our custom components with tags -->
 			// passing our todos, from our App state, to the Todos
       <div className="App">
-					<Todos todos={this.state.todos} markComplete={this.markComplete}/>
+					<Todos todos={this.state.todos} markComplete={this.markComplete} deleteTodo={this.deleteTodo}/>
       </div>
     );
   }
