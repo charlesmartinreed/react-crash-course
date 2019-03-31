@@ -44,6 +44,18 @@ class App extends Component {
 		})})
 	}
 
+	// ADD a new todo when the submit is clicked
+	// using the spread operator because it makes a copied array
+	addTodo = (title) => {
+		const newTodo = {
+			id: 4,
+			title,
+			completed: false
+		}
+
+		this.setState ({ todos: [...this.state.todos, newTodo] });
+	}
+
   render() {
 		// lifecycle method that renders what we see in the DOM
 		console.log(this.state.todos);
@@ -55,7 +67,7 @@ class App extends Component {
       <div className="App">
 				<div className="container">
 					<Header />
-					<AddTodo />
+					<AddTodo addTodo={this.addTodo} />
 					<Todos todos={this.state.todos} markComplete={this.markComplete} deleteTodo={this.deleteTodo}/>
 				</div>
       </div>
