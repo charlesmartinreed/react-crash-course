@@ -30,7 +30,7 @@ class App extends Component {
 			// note that you don't use 'class' in JSX, you use 'className'
 			// this looks like HTML, but it's actually JSX
 			// <!-- We embed our custom components with tags -->
-			// passing our todos, from our App state, to the Todos 
+			// passing our todos, from our App state, to the Todos
       <div className="App">
 					<Todos todos={this.state.todos} />
       </div>
