@@ -30,3 +30,7 @@ a {
 .btn:hover {
 	background: #666;
 }
+
+input[type="checkbox"] {
+	margin-right: 8px;
+}

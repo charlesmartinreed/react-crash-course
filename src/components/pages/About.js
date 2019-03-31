@@ -10,4 +10,7 @@ export default function About() {
 	)
 }
 
+const fragmentStyle = {
+	textAlign: 'center'
+}
 // export default About;
